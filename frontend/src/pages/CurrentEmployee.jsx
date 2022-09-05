@@ -4,10 +4,9 @@ import Table from '../components/CurrentEmployee/Table';
 
 const CurrentEmployee = () => {
     return (
-        <div className='current-employee'>
+        <main className='flex justify-center flex-col items-center'>
             <Table />
-        </div>
-
+        </main>
     )
 };
 

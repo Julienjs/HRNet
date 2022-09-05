@@ -1,7 +1,6 @@
 import { format } from 'date-fns'
 
 export const COLUMNS = [
-
     {
         Header: 'First Name',
         accessor: 'firstName'

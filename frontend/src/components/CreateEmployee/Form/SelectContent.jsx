@@ -1,10 +1,37 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import Select from 'react-select';
+import styled from 'styled-components';
+import tw from 'twin.macro';
+import Label from './Label';
 
-
-
-const SelectContent = ({ placeholder, options, error, id, register, control, errors, requiredError }) => {
+const SelectContent = ({ placeholder, options, id, register, control, errors, requiredError, name }) => {
+    const StyleSelect = styled(Select)`
+    .Select__control {
+        ${tw`h-5 leading-tight appearance-none border border-blue-gray-200 rounded-[7px] w-full text-gray-700 focus:outline-none focus:shadow-inner`}
+    }
+    .Error__control{
+        ${tw`appearance-none h-5 border border-red-500 rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-inner`} 
+    }
+    .Select__value-container{
+        ${tw``}
+    }
+    .Select__option{
+        ${tw``}
+    }
+    .Select__placeholder{
+        ${tw`text-blue-gray-500`}
+    }
+    .Error__placeholder{
+        ${tw`text-red-500`}
+    } 
+    .Select__indicator{
+        ${tw`text-gray-1`}
+    }
+    .Error__indicator{
+        ${tw`text-red-500`}
+    }
+    `
     const customStyles = {
         option: (provided, state) => ({
             ...provided,
@@ -15,26 +42,7 @@ const SelectContent = ({ placeholder, options, error, id, register, control, err
             color: state.isSelected ? 'white' : 'black',
             padding: 20,
         }),
-        control: () => ({
-            backgroundColor: "white",
-            display: "flex",
-            alignItems: "center",
-            height: 40,
-            borderRadius: 10,
-            width: "270px",
-            border: !errors ? "0.5px solid rgb(205, 202, 202)" : "0.5px solid red",
-            margin: "2px 0 5px 0",
-            padding: "1px 2px"
-        }),
-        placeholder: base => {
-            return {
-                ...base,
-                fontFamily: 'Kanit',
-                fontWeight: "400",
-                fontSize: 15,
-                color: !errors ? "rgb(189, 185, 185)" : "red",
-            };
-        },
+
         dropdownIndicator: (base, state) => ({
             ...base,
             color: errors ? "red" : "rgb(205, 202, 202)",
@@ -52,28 +60,36 @@ const SelectContent = ({ placeholder, options, error, id, register, control, err
         }
     }
     return (
-        <>
-            <Controller
-                name={id}
-                control={control}
-                rules={{
-                    required: true
-                }}
-                render={({ field }) => (
-                    <Select
-                        {...field}
-                        isClearable
-                        styles={customStyles}
-                        options={options}
-                        placeholder={placeholder}
-                    />
-                )}
-            />
-            {
-                errors &&
-                <p className='error'>{requiredError}</p>
-            }
-        </>
+        <div className="w-[90%] mx-auto">
+            <Label text={name} id={id} />
+            <div className='mt-1'>
+                <Controller
+                    name={id}
+                    id={id}
+                    control={control}
+                    rules={{
+                        required: true
+                    }}
+                    render={({ field }) => (
+                        <StyleSelect
+                            classNamePrefix={!errors ? "Select" : "Error"}
+                            id={id}
+                            aria-label={`select a ${id}`}
+                            aria-required="true"
+                            {...field}
+                            isClearable
+                            styles={customStyles}
+                            options={options}
+                            placeholder={placeholder}
+                        />
+                    )}
+                />
+                {
+                    errors &&
+                    <p className='text-red-500 text-xs italic'>{requiredError}</p>
+                }
+            </div>
+        </div >
     );
 };
 

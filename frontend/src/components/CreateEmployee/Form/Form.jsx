@@ -1,19 +1,18 @@
 import React from 'react';
 import { states } from '../../../data/states';
 import { departments } from '../../../data/departments';
-import SelectContent from "./SelectContent"
-import "../CreateEmployee.css"
-import Input from './Input';
+import { Button } from "@material-tailwind/react";
+import Inputs from './Input';
 import { dateRegex, zipCodesRegex, nameRegex, streetRegex, majority, dateHasPassed, cityRegex } from '../../../utils/regex';
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { createEmployee } from '../../../feature/employeeSlice';
 import { useState } from 'react';
-import Close from '../../../assets/img/icon-close.png'
-import { Modal } from 'modal-responsive'
-import 'modal-responsive/dist/index.css'
-
+import Close from '../../../assets/img/icon-close.png';
+import { Modal } from 'modal-responsive';
+import 'modal-responsive/dist/index.css';
 import { Player } from '@lottiefiles/react-lottie-player';
+import SelectContent from './SelectContent';
 
 const Form = () => {
     const dispatch = useDispatch()
@@ -27,7 +26,6 @@ const Form = () => {
     const validStartDate = (startDateValue) => {
         return !dateHasPassed(startDateValue) ? false : true
     }
-
 
     const handleCreate = value => {
         const employeeData = () => {
@@ -51,50 +49,43 @@ const Form = () => {
             else {
                 dispatch(createEmployee(data))
                 setTrigger(true)
-                // reset()
+                reset()
             }
         }
         employeeData()
     }
 
     return (
-        <section id='form-section'>
-            <h2>Create Employee</h2>
+        <section className='flex flex-col justify-center items-center my-4 rounded-md p-5 w-[98%] max-w-[700px] min-w-[310px] shadow-xl border md:max-w-[90%] lg:max-w-[70%] 2xl:w-[60%]'>
+            <h2 className='text-center text-xl after:after-title'>Create Employee</h2>
             <article>
-                <form onSubmit={handleSubmit(handleCreate)}>
-                    <div className='user-form'>
-                        <legend>Employee</legend>
-                        <label htmlFor='firstName'>Full Name<span className='span-label'>*</span></label>
-                        <div className='fullName-input'>
-                            <div>
-                                <Input
-                                    type={"text"}
-                                    id={"firstName"}
-                                    placeholder={"Homer"}
-                                    register={register}
-                                    regex={nameRegex}
-                                    errors={errors.firstName}
-                                    patternError="must not contain numbers"
-                                    requiredError="required fields"
-                                />
-                                <label htmlFor='firstName'>First Name</label>
-                            </div>
-                            <div>
-                                <Input
-                                    type={"text"}
-                                    id={"lastName"}
-                                    placeholder={'Simpson'}
-                                    register={register}
-                                    regex={nameRegex}
-                                    errors={errors.lastName}
-                                    patternError="the last name should not contain any numbers or special characters"
-                                    requiredError="required fields"
-                                />
-                                <label htmlFor='lastName'>Last Name</label>
-                            </div>
-                        </div>
-                        <label htmlFor='dateOfBirth'>Date of Birth<span className='span-label'>*</span></label>
-                        <Input
+                <form
+                    className='flex flex-col justify-center items-center my-6 w-[100%] min-w-[200px] md:flex-row md:justify-between md:flex-wrap'
+                    onSubmit={handleSubmit(handleCreate)}>
+                    <div className='flex w-[300px] flex-col mb-4 lg:mx-[5px] lg:w-[47%] '>
+                        <legend className='border border-green-1 w-full text-center mx-auto mb-4 py-2'>Employee</legend>
+                        <Inputs
+                            type={"text"}
+                            text={"First Name"}
+                            id={"firstName"}
+                            register={register}
+                            regex={nameRegex}
+                            errors={errors.firstName}
+                            patternError="must not contain numbers"
+                            requiredError="required fields"
+                        />
+                        <Inputs
+                            type={"text"}
+                            text={"Last Name"}
+                            id={"lastName"}
+                            register={register}
+                            regex={nameRegex}
+                            errors={errors.lastName}
+                            patternError="the last name should not contain any numbers or special characters"
+                            requiredError="required fields"
+                        />
+                        <Inputs
+                            text={'Date of Birth'}
                             type={"date"}
                             id={"dateOfBirth"}
                             register={register}
@@ -104,8 +95,8 @@ const Form = () => {
                             requiredError="required fields"
                             error="the employee must be of age"
                         />
-                        <label htmlFor='startDate'>Start Date<span className='span-label'>*</span></label>
-                        <Input
+                        <Inputs
+                            text={'Start Date'}
                             type={"date"}
                             id={"startDate"}
                             register={register}
@@ -115,73 +106,68 @@ const Form = () => {
                             requiredError="required fields"
                             error="the date entered exceeds the current date"
                         />
-                        <label htmlFor='department'>Department<span className='span-label'>*</span></label>
                         <SelectContent
+                            name='Department'
                             id={"department"}
-                            placeholder={"Sales"}
                             options={departments}
                             requiredError={"please select a department "}
                             control={control}
                             errors={errors.department}
                         />
                     </div>
-                    <div className='address-form'>
-                        <legend>Address</legend>
-                        <label htmlFor='street'>Street<span className='span-label'>*</span></label>
-                        <Input
+                    <div className='flex w-[300px] flex-col mb-4 lg:mx-[5px] md:self-start lg:w-[48%]'>
+                        <legend className='border border-green-1 text-center mx-auto mb-4 py-2 w-full' >Address</legend>
+                        <Inputs
+                            text={'Street'}
                             type={"text"}
                             id={"street"}
-                            placeholder={'1016 20th Street'}
                             register={register}
                             regex={streetRegex}
                             errors={errors.street}
                             patternError="please enter a valid street name"
                             requiredError="required fields"
                         />
-                        <label htmlFor='city'>City<span className='span-label'>*</span></label>
-                        <Input
+                        <Inputs
+                            text={'City'}
                             type={"text"}
                             id={"city"}
-                            placeholder={'Birmingham'}
                             register={register}
                             regex={cityRegex}
                             errors={errors.city}
                             patternError="the city should not contain any figures or special characters"
                             requiredError="required fields"
                         />
-                        <label htmlFor='state'>State<span className='span-label'>*</span></label>
-                        <SelectContent
-                            id={"state"}
-                            placeholder={'State'}
-                            options={states}
-                            control={control}
-                            requiredError={"please select a state"}
-                            errors={errors.state}
-                        />
-                        <label htmlFor='zipCode'>Zip Code<span className='span-label'>*</span></label>
-                        <Input
+                        <Inputs
+                            text={'Zip Code'}
                             type={"number"}
                             id={"zipCode"}
                             register={register}
-                            placeholder={"35005"}
                             regex={zipCodesRegex}
                             errors={errors.zipCode}
                             patternError="this field must contain at least 5 digits"
                             requiredError="required fields"
                         />
+                        <SelectContent
+                            name="State"
+                            id={"state"}
+                            options={states}
+                            control={control}
+                            requiredError={"please select a state"}
+                            errors={errors.state}
+                        />
                     </div>
-                    <button type='submit'>Save</button>
+                    <Button type='submit' color="green" className='mt-8 w-11/12 mx-auto'>Save</Button>
                 </form>
             </article>
             <Modal trigger={trigger} setTrigger={setTrigger} close={Close}>
                 <Player
+                    className='h-[auto] w-[500px]  relative bottom-[3em] md:w-[800px] 2xl:w-[700px]'
                     autoplay
                     loop={false}
                     keepLastFrame={true}
                     src="https://assets6.lottiefiles.com/packages/lf20_jbrw3hcz.json"
-                    style={{ height: '300px', width: '500px' }}
                 />
-                <h3>Employee Created!</h3>
+                <h3 className='relative bottom-[6em] md:bottom-[8em] md:text-xl'>Employee Created!</h3>
             </Modal>
         </section >
     );
