@@ -49,7 +49,7 @@ const Form = () => {
             else {
                 dispatch(createEmployee(data))
                 setTrigger(true)
-                reset()
+                // reset()
             }
         }
         employeeData()
@@ -167,7 +167,7 @@ const Form = () => {
                     keepLastFrame={true}
                     src="https://assets6.lottiefiles.com/packages/lf20_jbrw3hcz.json"
                 />
-                <h3 className='relative bottom-[6em] md:bottom-[8em] md:text-xl'>Employee Created!</h3>
+                <h3 className='relative bottom-[6em] modal-msg md:text-xl'>Employee Created!</h3>
             </Modal>
         </section >
     );
