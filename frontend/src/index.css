@@ -88,30 +88,27 @@
   }
 
   .modal-msg {
-    animation: appearance-h3 3s 0.4;
+    color: black;
+    font-size: 2rem;
+    position: relative;
+    bottom: 6.5rem;
+    margin: 0;
+    opacity:0;
+    transform: translateY(10px);
+    animation: translate 0.5s ease-in-out forwards;
+    animation-delay:1s;
   }
 
-  @keyframes appearance-h3 {
-    0% {
-      opacity: 0;
-    }
-
-    25% {
-      opacity: 0.25;
-    }
-
-    50% {
-      opacity: 0.5;
-    }
-
-    75% {
-      opacity: 0.75;
-    }
-
-    100% {
-      opacity: 1;
-    }
-
+ @keyframes translate {
+  0% {
+    opacity: 0;
+    transform: translateY(20px)
   }
 
+  100% {
+    opacity: 1;
+    transform: translateY(10px)
+  }
+
+}
 }

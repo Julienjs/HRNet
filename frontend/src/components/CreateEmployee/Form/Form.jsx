@@ -9,8 +9,8 @@ import { useDispatch } from 'react-redux';
 import { createEmployee } from '../../../feature/employeeSlice';
 import { useState } from 'react';
 import Close from '../../../assets/img/icon-close.png';
-import { Modal } from 'modal-responsive';
-import 'modal-responsive/dist/index.css';
+import { Modal } from 'react-modal-success';
+import 'react-modal-success/dist/index.css';
 import { Player } from '@lottiefiles/react-lottie-player';
 import SelectContent from './SelectContent';
 
@@ -159,15 +159,15 @@ const Form = () => {
                     <Button type='submit' color="green" className='mt-8 w-11/12 mx-auto'>Save</Button>
                 </form>
             </article>
-            <Modal trigger={trigger} setTrigger={setTrigger} close={Close}>
+            <Modal showModal={trigger} setShowModal={setTrigger}>
                 <Player
-                    className='h-[auto] w-[500px]  relative bottom-[3em] md:w-[800px] 2xl:w-[700px]'
+                    className='w-[500px] h-[80%] mx-auto my-0'
                     autoplay
                     loop={false}
                     keepLastFrame={true}
                     src="https://assets6.lottiefiles.com/packages/lf20_jbrw3hcz.json"
                 />
-                <h3 className='relative bottom-[6em] modal-msg md:text-xl'>Employee Created!</h3>
+                <h3 className="modal-msg">Employee Created!</h3>
             </Modal>
         </section >
     );
