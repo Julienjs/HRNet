@@ -1,6 +1,3 @@
-<img src='./frontend/src/assets/img/hrnet.jpg' alt="Logo" title="hrnet" width="178" margin-left="250">
-
-
 ## 1. Projet:
 
 ### 1.1 Prerequisite: Get the standard package manager for Node.js: npm
