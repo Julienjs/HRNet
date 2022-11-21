@@ -1,4 +1,4 @@
-<img src='./src/assets/hrnet.jpg' alt="Logo" title="hrnet" width="178" margin-left="250">
+<img src='./src/assets/img/hrnet.jpg' alt="Logo" title="hrnet" width="178" margin-left="250">
 
 
 ## 1. Projet:
