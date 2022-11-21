@@ -13,7 +13,6 @@ const Inputs = ({
   error,
   text,
 }) => {
-  console.log(errors);
   return (
     <div className="w-[90%] mx-auto">
       <Label id={id} text={text} />

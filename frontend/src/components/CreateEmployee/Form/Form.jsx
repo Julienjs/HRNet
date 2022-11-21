@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { createEmployee } from '../../../feature/employeeSlice';
 import { useState } from 'react';
-import Close from '../../../assets/img/icon-close.png';
 import { Modal } from 'react-modal-success';
 import 'react-modal-success/dist/index.css';
 import { Player } from '@lottiefiles/react-lottie-player';
@@ -49,7 +48,7 @@ const Form = () => {
             else {
                 dispatch(createEmployee(data))
                 setTrigger(true)
-                // reset()
+                reset()
             }
         }
         employeeData()

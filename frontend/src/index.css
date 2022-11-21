@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;500;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body{
+  @apply font-Kanit;
+}
 
 @layer components {
   .btn-1 {

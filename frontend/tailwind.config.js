@@ -12,7 +12,7 @@ module.exports = withMT({
         'gray-1': 'rgb(189, 185, 185)',
       },
       fontFamily: {
-        sans: ['Kanit', 'sans-serif'],
+        Kanit: ['Kanit', 'sans-serif'],
       },
       height: {
         "lg": "26.875rem"
