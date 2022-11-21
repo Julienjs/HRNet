@@ -17,7 +17,7 @@
 #### Access the project converted to react 
 
 ##### In the terminal :
-- Enter the following command "git checkout convert-to-react"
+- Enter the following command "git checkout conversion-to-react"
 
 #### Access to the initial project 
 
